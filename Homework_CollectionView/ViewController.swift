@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     func setupCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: getCompositionLayout())
         
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +52,49 @@ class ViewController: UIViewController {
         collectionView.register(VerticalCollectionViewCell.self, forCellWithReuseIdentifier: VerticalCollectionViewCell.identifier)
     }
     
+    func getCompositionLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (section, environment) -> NSCollectionLayoutSection? in
+            
+            switch section {
+            case 0:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .fractionalHeight(1))
+                
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+                
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                
+                let horizontalSecction = NSCollectionLayoutSection(group: group)
+                
+                horizontalSecction.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                horizontalSecction.orthogonalScrollingBehavior = .continuous
+                return horizontalSecction
+           
+            case 1:
+                
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+                
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80))
+                
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+                
+                let verticalSection = NSCollectionLayoutSection(group: group)
+                
+                verticalSection.interGroupSpacing = 5
+                verticalSection.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+                
+                return verticalSection
+            default:
+                fatalError()
+            }
+
+        
+        }
+        
+    }
     
 }
 

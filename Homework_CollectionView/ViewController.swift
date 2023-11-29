@@ -57,13 +57,12 @@ class ViewController: UIViewController {
             
             switch section {
             case 0:
-                let itemSize = NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.estimated(1), heightDimension: .fractionalHeight(1))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .absolute(50))
                 
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                
                 let horizontalSecction = NSCollectionLayoutSection(group: group)
                 
                 horizontalSecction.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)

@@ -28,8 +28,8 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             textLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             textLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
         
         
